@@ -1,0 +1,29 @@
+SITE DO CENTRO DE INTELIGÊNCIA E SEGURANÇA
+
+Como abrir:
+1. Abra o arquivo index.html em um navegador.
+
+Como usar o diretório:
+- Clique no nome de uma categoria para abrir ou fechar sua lista.
+- Cada cartão principal funciona como um tópico (ex.: Polícia Militar).
+- Clique no tópico para ver seus contatos internos e as opções Ligar e WhatsApp.
+- Use Adicionar contato ou Editar dentro do tópico; o site solicitará o login
+  administrativo antes de permitir alterações.
+- Os tópicos GCM e EXÉRCITO começam vazios para receber os contatos corretos.
+
+Como publicar:
+1. Envie index.html, styles.css e app.js juntos para a hospedagem.
+2. O arquivo index.html deve permanecer na raiz da pasta publicada.
+
+Área administrativa:
+- Usuário inicial: admin
+- Senha inicial: admin123
+- Após entrar, use a aba Administradores para autorizar novos usuários.
+- Os contatos são salvos no navegador do usuário (localStorage).
+- Para que alterações apareçam para todos os visitantes, será necessário conectar
+  o site ao banco de dados/servidor da empresa.
+
+Integração futura:
+- Envie a URL e, se possível, informe a plataforma do site (WordPress, Wix,
+  HTML próprio etc.). Assim o diretório poderá receber a identidade visual e
+  o método de publicação corretos.

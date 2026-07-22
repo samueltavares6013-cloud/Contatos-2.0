@@ -1,0 +1,13 @@
+{
+  "nome": "Centro de Inteligência e Segurança",
+  "tipo": "Diretório operacional de contatos",
+  "arquivoPrincipal": "index.html",
+  "arquivosDoSite": [
+    "index.html",
+    "styles.css",
+    "app.js",
+    "assets"
+  ],
+  "observacao": "Os contatos do site são carregados pelo app.js e também podem ficar salvos no navegador quando editados pelo administrador.",
+  "ultimaAtualizacao": "2026-07-21"
+}

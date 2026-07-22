@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f1117" />
+    <meta name="description" content="Diretório do Centro de Inteligência e Segurança" />
+    <title>Centro de Inteligência e Segurança</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#inicio" aria-label="Ir ao início">
+          <img class="brand-logo" src="assets/centro-inteligencia-seguranca.jpg" alt="Emblema do Centro de Inteligência e Segurança" />
+          <span><strong>CENTRO DE INTELIGÊNCIA E SEGURANÇA</strong><small>Diretório operacional de contatos</small></span>
+        </a>
+        <button class="button button-ghost" id="admin-open" type="button">
+          <span aria-hidden="true">▣</span><span class="desktop-label">Administrar</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="hero container" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">CENTRO OPERACIONAL</p>
+          <h1 id="hero-title">Comunicação rápida.</h1>
+          <p>Contatos estratégicos, emergência e suporte reunidos em um ambiente seguro e organizado.</p>
+        </div>
+        <img class="hero-emblem" src="assets/centro-inteligencia-seguranca.jpg" alt="" aria-hidden="true" />
+        <aside class="stat-card" aria-label="Resumo do diretório">
+          <strong id="contact-count">0</strong>
+          <span>contatos disponíveis</span>
+          <hr />
+          <small><i></i> Diretório atualizado</small>
+        </aside>
+      </section>
+
+      <section class="container directory" aria-label="Diretório de contatos">
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="search" type="search" placeholder="Buscar contato, cargo, categoria ou telefone…" autocomplete="off" />
+        </label>
+        <div id="contact-sections" aria-live="polite"></div>
+        <div class="empty-state hidden" id="empty-state">
+          <span aria-hidden="true">⌕</span>
+          <p>Nenhum contato encontrado.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer><span aria-hidden="true">◆</span> Diretório de uso institucional</footer>
+
+    <div class="modal hidden" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title">
+      <button class="modal-backdrop" data-close="login-modal" aria-label="Fechar"></button>
+      <form class="modal-card" id="login-form">
+        <button class="icon-button modal-close" type="button" data-close="login-modal" aria-label="Fechar">×</button>
+        <p class="eyebrow">ACESSO RESTRITO</p>
+        <h2 id="login-title">Área administrativa</h2>
+        <label class="field"><span>Usuário</span><input id="admin-username" required autocomplete="username" /></label>
+        <label class="field"><span>Senha de administrador</span><input id="admin-password" type="password" required autocomplete="current-password" /></label>
+        <p class="form-error hidden" id="login-error">Usuário ou senha incorretos.</p>
+        <div class="modal-actions">
+          <button class="button button-muted" type="button" data-close="login-modal">Cancelar</button>
+          <button class="button button-primary" type="submit">Entrar</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="admin-panel hidden" id="admin-panel" aria-labelledby="admin-title">
+      <div class="admin-shell">
+        <div class="admin-header">
+          <div><p class="eyebrow">ÁREA RESTRITA</p><h2 id="admin-title">Painel administrativo</h2><p id="admin-welcome">Gerencie contatos e permissões.</p></div>
+          <button class="button button-muted" id="admin-close" type="button">Voltar ao site</button>
+        </div>
+        <nav class="admin-tabs" aria-label="Seções administrativas">
+          <button class="admin-tab active" type="button" data-admin-tab="contacts">Contatos</button>
+          <button class="admin-tab" type="button" data-admin-tab="administrators">Administradores</button>
+        </nav>
+
+        <section class="admin-pane" id="contacts-pane">
+          <div class="pane-heading"><div><h3>Contatos do diretório</h3><p>Use “Editar” para mudar o nome, telefone e demais informações.</p></div><button class="button button-primary new-contact" id="new-contact" type="button">+ Novo contato</button></div>
+          <div class="admin-list" id="admin-list"></div>
+        </section>
+
+        <section class="admin-pane hidden" id="administrators-pane">
+          <div class="security-note"><strong>Aba protegida</strong><span>Somente administradores autenticados podem visualizar e alterar esta lista.</span></div>
+          <div class="administrator-layout">
+            <form class="administrator-form" id="administrator-form">
+              <h3>Adicionar administrador</h3>
+              <label class="field"><span>Nome *</span><input id="new-admin-name" required /></label>
+              <label class="field"><span>Usuário *</span><input id="new-admin-username" required autocomplete="off" /></label>
+              <label class="field"><span>Senha *</span><input id="new-admin-password" type="password" minlength="6" required autocomplete="new-password" /></label>
+              <p class="form-error hidden" id="administrator-error"></p>
+              <button class="button button-primary" type="submit">Adicionar administrador</button>
+            </form>
+            <div><h3>Administradores autorizados</h3><div class="administrator-list" id="administrator-list"></div></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="modal hidden" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="form-title">
+      <button class="modal-backdrop" data-close="form-modal" aria-label="Fechar"></button>
+      <form class="modal-card form-card" id="contact-form">
+        <button class="icon-button modal-close" type="button" data-close="form-modal" aria-label="Fechar">×</button>
+        <p class="eyebrow" id="form-eyebrow">NOVO CADASTRO</p>
+        <h2 id="form-title">Adicionar contato</h2>
+        <input id="contact-id" type="hidden" />
+        <div class="form-grid">
+          <label class="field"><span>Nome / Setor *</span><input id="contact-name" required /></label>
+          <label class="field"><span>Cargo / Descrição</span><input id="contact-role" /></label>
+          <label class="field"><span>Telefone *</span><input id="contact-phone" required /></label>
+          <label class="field"><span>Categoria *</span><select id="contact-category"><option>Externos</option><option>Internos</option></select></label>
+          <label class="field"><span>Ícone</span><select id="contact-icon"><option value="phone">Telefone</option><option value="medical">Médico</option><option value="police">Polícia</option><option value="fire">Bombeiros</option><option value="business">Empresa</option><option value="security">Segurança</option><option value="computer">TI</option><option value="tools">Manutenção</option><option value="person">Pessoa</option></select></label>
+          <label class="field"><span>Ordem</span><input id="contact-order" type="number" value="0" /></label>
+        </div>
+        <div class="modal-actions"><button class="button button-muted" type="button" data-close="form-modal">Cancelar</button><button class="button button-primary" type="submit">Salvar contato</button></div>
+      </form>
+    </div>
+
+    <div class="modal hidden" id="subcontact-form-modal" role="dialog" aria-modal="true" aria-labelledby="subcontact-form-title">
+      <button class="modal-backdrop" data-close="subcontact-form-modal" aria-label="Fechar"></button>
+      <form class="modal-card form-card" id="subcontact-form">
+        <button class="icon-button modal-close" type="button" data-close="subcontact-form-modal" aria-label="Fechar">×</button>
+        <p class="eyebrow" id="subcontact-form-eyebrow">NOVO CONTATO INTERNO</p>
+        <h2 id="subcontact-form-title">Adicionar contato ao tópico</h2>
+        <p class="form-context" id="subcontact-parent-name"></p>
+        <input id="subcontact-parent-id" type="hidden" />
+        <input id="subcontact-id" type="hidden" />
+        <div class="form-grid">
+          <label class="field"><span>Nome do contato *</span><input id="subcontact-name" required /></label>
+          <label class="field"><span>Cargo / Descrição</span><input id="subcontact-role" /></label>
+          <label class="field"><span>Telefone *</span><input id="subcontact-phone" required /></label>
+        </div>
+        <div class="modal-actions"><button class="button button-muted" type="button" data-close="subcontact-form-modal">Cancelar</button><button class="button button-primary" type="submit">Salvar contato</button></div>
+      </form>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
