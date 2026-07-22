@@ -25,6 +25,8 @@ body{background:var(--bg)}
 .stat-card{background:rgba(6,29,53,.88);border-color:rgba(255,138,31,.24)}
 .contact-icon{background:rgba(255,138,31,.10);border-color:rgba(255,138,31,.32)}
 .button-ghost,.admin-tab.active,.security-note{background:rgba(255,138,31,.12);border-color:rgba(255,138,31,.28)}
+.header-actions{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+@media(max-width:520px){.header-actions{gap:6px}.header-actions .button{padding:0 12px}}
 
 /* Ajuste do símbolo dentro da caixa principal */
 .hero-emblem{width:min(260px,22vw);height:min(260px,22vw);right:clamp(250px,27vw,430px);top:50%;transform:translateY(-50%);object-fit:contain;opacity:.14}
